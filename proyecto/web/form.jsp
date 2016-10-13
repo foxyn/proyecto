@@ -37,7 +37,16 @@
                 <td></td>
                 <td> <input type="submit" value="ENVIAR"  </td>
             </tr>
+          
             </table>
+            <h1>  <%
+                String msg = (String)session.getAttribute("mensaje");
+                if (msg != null) {
+                out.println(msg);
+                }
+                 %>
+                 
+            </h1>
         </form>
     </body>
 </html>

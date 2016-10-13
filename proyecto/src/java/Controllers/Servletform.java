@@ -24,12 +24,13 @@ public class Servletform extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+      // Se reciben los datos de form.jsp
       String correo = request.getParameter("correo");
       String  mili = request.getParameter("mili");
       String grados = request.getParameter("grados");
       String peso = request.getParameter("peso");
       String sexo= null;
+      String mensaje=null;
       double factor=0;
       if (request.getParameter("sexo") == "1"){
            sexo = "M";
@@ -60,12 +61,19 @@ public class Servletform extends HttpServlet {
           
             out.println("sexo: "+ sexo);
              if (alcoholemia < 0.3){
-                out.println("Alcoholemia: "+ alcoholemia+" Sin sanción al conducir");
+               
+               request.getSession().setAttribute("mensaje","Correo: " + correo + "<br> Mililitros: " + mili + "<br> Grados: " + grados + "<br> Peso: " + peso + "<br> Alcoholemia: " + alcoholemia + "<br> Sin Sanción al conducir.");
             }else if (alcoholemia >= 0.3 && alcoholemia <0.8){
-                out.println("Alcoholemia: "+ alcoholemia+" Bajo la influencia de alcohol");
+                
+                request.getSession().setAttribute("mensaje","Correo: <br>" + correo + "<br> Mililitros :" + mili + "<br> Grados: " + grados + "<br> Peso: " + peso + "<br> Alcoholemia: " + alcoholemia + "<br> Bajo la influencia de alcohol.");
+
             }else{
-                out.println("Alcoholemia: "+ alcoholemia+" Estado de Ebriedad");
+               
+                request.getSession().setAttribute("mensaje","Correo: <br>" + correo + "<br> Mililitros :" + mili + "<br> Grados: " + grados + "<br> Peso: " + peso + "<br> Alcoholemia: " + alcoholemia + "<br> Estado de Ebriedad.");
+
             }
+            
+            request.getRequestDispatcher("/form.jsp").forward(request, response); 
         }
     }
 
