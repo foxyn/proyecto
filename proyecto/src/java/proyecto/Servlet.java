@@ -27,7 +27,7 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        request.getRequestDispatcher("/form.jsp")
+        request.getRequestDispatcher("/Principal.jsp")
                 .forward(request, response);
     }
 

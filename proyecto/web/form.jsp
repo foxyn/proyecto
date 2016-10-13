@@ -48,6 +48,8 @@
                  %>
                  
             </h1>
+                 <br>
+                 <h3> <a href="Principal.jsp"> Atrás </a> </h3>
         </form>
     </body>
 </html>

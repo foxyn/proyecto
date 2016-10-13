@@ -4,6 +4,7 @@ package Controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.text.DecimalFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,7 @@ public class Servletform extends HttpServlet {
       String peso = request.getParameter("peso");
       String sexo= null;
       String mensaje=null;
+      DecimalFormat df = new DecimalFormat("0.00"); 
       double factor=0;
       if (request.getParameter("sexo") == "1"){
            sexo = "M";
@@ -54,22 +56,17 @@ public class Servletform extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try(PrintWriter out = response.getWriter()){
-            out.println("correo: "+ correo);
-            out.println("mililitros: "+ mili);
-            out.println("grados: "+ grados);
-            out.println("peso: "+ peso);
-          
-            out.println("sexo: "+ sexo);
+            
              if (alcoholemia < 0.3){
                
-               request.getSession().setAttribute("mensaje","Alcoholemia: " + alcoholemia + "<br> Sin Sanción al conducir.");
+               request.getSession().setAttribute("mensaje","Alcohol: "+ df.format(alcohol) + "<br> Alcoholemia: " + df.format(alcoholemia)+ "<br> Sin Sanción al conducir.");
             }else if (alcoholemia >= 0.3 && alcoholemia <0.8){
                 
-                request.getSession().setAttribute("mensaje","Alcoholemia: " + alcoholemia + "<br> Bajo la influencia de alcohol.");
+                request.getSession().setAttribute("mensaje","Alcohol: "+ df.format(alcohol) + "<br> Alcoholemia: " + df.format(alcoholemia) + "<br> Bajo la influencia de alcohol.");
 
             }else{
                
-                request.getSession().setAttribute("mensaje","Alcoholemia: " + alcoholemia + "<br> Estado de Ebriedad.");
+                request.getSession().setAttribute("mensaje","Alcohol: "+ df.format(alcohol) + "<br> Alcoholemia: " + df.format(alcoholemia) + "<br> Estado de Ebriedad.");
 
             }
             
