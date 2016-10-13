@@ -21,7 +21,7 @@
                 <td> <input type="number" id="mili" name="mili" required > </td> <br>
             </tr> 
                 <td>Grados:</td>
-                <td> <input type="number" id="grados" name="grados" required > </td> <br>
+                <td> <input type="text" id="grados" name="grados" required > </td> <br>
             <tr>
                 <td>Peso:</td>
                 <td> <input type="number" id="peso" name="peso" required ></td> <br>
@@ -35,7 +35,7 @@
             
             <tr colspan="2">
                 <td></td>
-                <td> <input type="submit" value="ENVIAR"  </td>
+                <td> <input type="submit" value="CALCULAR"  </td>
             </tr>
           
             </table>
