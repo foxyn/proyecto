@@ -41,9 +41,11 @@
             </table>
             <br>
             <h1 style="color: blue;text-align: center">  <%
+                
                 String msg = (String)session.getAttribute("mensaje");
                 if (msg != null) {
                 out.println(msg);
+                session.removeAttribute("mensaje");
                 }
                  %>
                  

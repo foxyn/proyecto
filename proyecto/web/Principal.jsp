@@ -14,8 +14,9 @@
         <br>
         <ol>
             
-            <li> <h3> <a href="form.jsp"> Cálculo de Alcohol en la sangre </a> </h3> </li>
-
+            <li>
+                <h3> <a href="form.jsp"> Cálculo de Alcohol en la sangre </a> </h3> </li>
+                
             <li>   <td> <h3> <a href="Consulta.jsp"> Consulta de datos </a> </h3> </li>
             
         </ol>
