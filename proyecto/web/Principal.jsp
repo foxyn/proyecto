@@ -21,7 +21,7 @@
             
         </ol>
         <div align="center">
-        <IMG SRC="http://yvesrocherdemexico.com/wp-content/uploads/2014/09/iStock_000006395094Large.jpg" WIDTH=500 BORDER=0 ALT="Alcohol">
+        <IMG SRC="https://media4.giphy.com/media/3orifcwIbqe5DyaxKE/200.gif#5" WIDTH=500 BORDER=0 ALT="Alcohol">
         </div>
         </body>
 </html>
