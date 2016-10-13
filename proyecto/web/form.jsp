@@ -8,16 +8,36 @@
         <title>Formulario</title>
     </head>
     <body>
-        <h1>Formulario Alcoholemia</h1>
-        <form>
+        
+        <h1 style="text-align: center">Formulario Alcoholemia</h1>
+        <form method="post" action="FormularioController">
+            <table style="margin: 0 auto;">
             <tr>
-                <th>Correo:     <input type="email" id="correo" name="correo" required > </th> <br>
-            <th>Mililitros: <input type="number" id="mili" name="mili" required > </th> <br>
-                <th>Grados:     <input type="number" id="grados" name="grados" required > </th> <br>
-                <th>Peso:       <input type="number" id="peso" name="peso" required ></th> <br>
-                <th>Sexo:       <input type="text" id="sexo" name="sexo" required > </th> <br>
-                <input type="submit" value="ENVIAR"
+                    <td>Correo:</td>
+                    <td> <input type="email" id="correo" name="correo" required > </td>
             </tr>
+            <tr>
+                <td>Mililitros:</td>
+                <td> <input type="number" id="mili" name="mili" required > </td> <br>
+            </tr> 
+                <td>Grados:</td>
+                <td> <input type="number" id="grados" name="grados" required > </td> <br>
+            <tr>
+                <td>Peso:</td>
+                <td> <input type="number" id="peso" name="peso" required ></td> <br>
+            </tr>    
+            <tr>
+                <td>Sexo:</td> 
+                <td> <input type="radio" name="sexo" checked value="1"> Masculino </td>
+                <td> <input type="radio" name="sexo" value="2"> Femenino</td>
+                
+            </tr>
+            
+            <tr colspan="2">
+                <td></td>
+                <td> <input type="submit" value="ENVIAR"  </td>
+            </tr>
+            </table>
         </form>
     </body>
 </html>
