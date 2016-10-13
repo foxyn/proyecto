@@ -62,14 +62,14 @@ public class Servletform extends HttpServlet {
             out.println("sexo: "+ sexo);
              if (alcoholemia < 0.3){
                
-               request.getSession().setAttribute("mensaje","Correo: " + correo + "<br> Mililitros: " + mili + "<br> Grados: " + grados + "<br> Peso: " + peso + "<br> Alcoholemia: " + alcoholemia + "<br> Sin Sanción al conducir.");
+               request.getSession().setAttribute("mensaje","Alcoholemia: " + alcoholemia + "<br> Sin Sanción al conducir.");
             }else if (alcoholemia >= 0.3 && alcoholemia <0.8){
                 
-                request.getSession().setAttribute("mensaje","Correo: <br>" + correo + "<br> Mililitros :" + mili + "<br> Grados: " + grados + "<br> Peso: " + peso + "<br> Alcoholemia: " + alcoholemia + "<br> Bajo la influencia de alcohol.");
+                request.getSession().setAttribute("mensaje","Alcoholemia: " + alcoholemia + "<br> Bajo la influencia de alcohol.");
 
             }else{
                
-                request.getSession().setAttribute("mensaje","Correo: <br>" + correo + "<br> Mililitros :" + mili + "<br> Grados: " + grados + "<br> Peso: " + peso + "<br> Alcoholemia: " + alcoholemia + "<br> Estado de Ebriedad.");
+                request.getSession().setAttribute("mensaje","Alcoholemia: " + alcoholemia + "<br> Estado de Ebriedad.");
 
             }
             

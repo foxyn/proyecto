@@ -9,7 +9,7 @@
     </head>
     <body>
         
-        <h1 style="text-align: center">Formulario Alcoholemia</h1>
+        <h1 style="text-align: center;color: red">Formulario Alcoholemia</h1>
         <form method="post" action="Servletform">
             <table style="margin: 0 auto;">
             <tr>
@@ -39,7 +39,8 @@
             </tr>
           
             </table>
-            <h1>  <%
+            <br>
+            <h1 style="color: blue;text-align: center">  <%
                 String msg = (String)session.getAttribute("mensaje");
                 if (msg != null) {
                 out.println(msg);
