@@ -11,14 +11,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author felipe
- */
+
 @Entity
+
 @Table (name = "REGISTRO_ALCOHOLEMIA")
 public class RegistroAlcoholemia implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

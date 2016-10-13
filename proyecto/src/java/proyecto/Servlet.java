@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "FormularioController", urlPatterns = {"/formulario_principal.html"})
-public class FormularioController extends HttpServlet {
+@WebServlet(name = "Servlet", urlPatterns = {"/formulario_principal.html"})
+public class Servlet extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +35,14 @@ public class FormularioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String correo = request.getParameter("correo");
+        response.setContentType("text/html;charset=UTF-8");
+        
+        try(PrintWriter out = response.getWriter()){
+            out.println("correo: "+ correo);
+        }
+                
         
      
        
