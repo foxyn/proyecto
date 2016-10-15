@@ -47,6 +47,82 @@ public class RegistroAlcoholemia implements Serializable {
     
     @Column (name = "ALCOHOLEMIA")
     private double alcoholemia;
+
+    public RegistroAlcoholemia(Long id, Date fechaCreacion, String mail, String estado, double grados, int mililitros, int peso, char sexo, double alcoholemia) {
+        this.id = id;
+        this.fechaCreacion = fechaCreacion;
+        this.mail = mail;
+        this.estado = estado;
+        this.grados = grados;
+        this.mililitros = mililitros;
+        this.peso = peso;
+        this.sexo = sexo;
+        this.alcoholemia = alcoholemia;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public double getGrados() {
+        return grados;
+    }
+
+    public void setGrados(double grados) {
+        this.grados = grados;
+    }
+
+    public int getMililitros() {
+        return mililitros;
+    }
+
+    public void setMililitros(int mililitros) {
+        this.mililitros = mililitros;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public double getAlcoholemia() {
+        return alcoholemia;
+    }
+
+    public void setAlcoholemia(double alcoholemia) {
+        this.alcoholemia = alcoholemia;
+    }
     
     
     
