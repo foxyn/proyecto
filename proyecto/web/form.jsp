@@ -10,7 +10,7 @@
     <body>
         
         <h1 style="text-align: center;color: red">Formulario Alcoholemia</h1>
-        <form method="post" action="Servletform">
+        <form method="post" action="RegistroController">
             <table style="margin: 0 auto;">
             <tr>
                     <td>Correo:</td>

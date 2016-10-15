@@ -36,9 +36,13 @@ public class Servletform extends HttpServlet {
       String peso = request.getParameter("peso");
       String sexo= null;
       String mensaje=null;
-      DecimalFormat df = new DecimalFormat("0.00"); 
+      DecimalFormat df = new DecimalFormat("0.00");
       
+      Persona p = new Persona(correo);
+      Conexion cn = new Conexion();
         
+      cn.Insertar(p);
+      
       double factor=0;
       if (request.getParameter("sexo") == "1"){
            sexo = "M";
@@ -76,8 +80,9 @@ public class Servletform extends HttpServlet {
                 request.getSession().setAttribute("mensaje","Alcohol: "+ df.format(alcohol) + "<br> Alcoholemia: " + df.format(alcoholemia) + "<br> Estado de Ebriedad.");
                 estado = "Estado de Ebriedad.";
             }
-            Persona p = new Persona(correo,mili,grados,peso,sexo,alcoholemia,estado);
-            Conexion cn = new Conexion();
+            
+            
+            
             cn.Insertar(p);
             request.getRequestDispatcher("/form.jsp").forward(request, response); 
             
@@ -87,7 +92,6 @@ public class Servletform extends HttpServlet {
       
         alcoholemia=0;
     }
-
-
-
+    
+    
 }

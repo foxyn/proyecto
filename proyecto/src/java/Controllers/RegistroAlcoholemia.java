@@ -1,4 +1,4 @@
-package proyecto;
+package Controllers;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class RegistroAlcoholemia implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id //PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_REGISTRO")
     private Long id;
@@ -26,6 +26,30 @@ public class RegistroAlcoholemia implements Serializable {
     @Temporal (TemporalType.TIMESTAMP)
     @Column(name = "FECHA_CREACION")
     private Date fechaCreacion;
+    
+    @Column (name = "MAIL")
+    private String mail;
+    
+    @Column (name = "ESTADO")
+    private String estado;
+    
+    @Column (name = "GRADUACION")
+    private double grados;
+    
+    @Column (name = "MILILITROS")
+    private int mililitros;
+    
+    @Column (name = "PESO")
+    private int peso;
+    
+    @Column (name = "SEXO")
+    private char sexo;
+    
+    @Column (name = "ALCOHOLEMIA")
+    private double alcoholemia;
+    
+    
+    
     
    
     
