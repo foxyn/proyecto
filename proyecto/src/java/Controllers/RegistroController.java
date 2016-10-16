@@ -1,10 +1,12 @@
 
 package Controllers;
 
-import Model.Conexion;
-import Model.Persona;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +19,21 @@ public class RegistroController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //se reciben los datos
+        String mail = request.getParameter("mail");
+        Model.RegistroAlcoholemia reg = new Model.RegistroAlcoholemia();
         
-        
+        EntityManager em;
+            EntityManagerFactory emf;
+            
+            emf = Persistence.createEntityManagerFactory("proyectoPU");
+            em = emf.createEntityManager();     
+            em.getTransaction().begin();
+            em.persist(reg);
+            em.flush();
+            em.getTransaction().commit();
+            
+            response.sendRedirect("wena.jsp");
+     
        
     }
 
@@ -35,13 +50,10 @@ public class RegistroController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        String correo = request.getParameter("correo");
+       
         
         
-        Persona p1 = new Persona(correo);
-        p1.setCorreo(correo);
-        
-        Conexion cn = new Conexion(p1);
+       
     }
 
   

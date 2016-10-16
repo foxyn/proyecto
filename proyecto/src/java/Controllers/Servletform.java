@@ -1,12 +1,17 @@
 
 package Controllers;
 
-import Model.Conexion;
-import Model.Persona;
+
+import Model.RegistroAlcoholemia;
+import static Model.RegistroAlcoholemia_.fechaCreacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.text.DecimalFormat;
+import java.util.Date;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,11 +43,7 @@ public class Servletform extends HttpServlet {
       String mensaje=null;
       DecimalFormat df = new DecimalFormat("0.00");
       
-      Persona p = new Persona(correo);
-      Conexion cn = new Conexion();
-        
-      cn.Insertar(p);
-      
+      Model.RegistroAlcoholemia reg = new Model.RegistroAlcoholemia();
       double factor=0;
       if (request.getParameter("sexo") == "1"){
            sexo = "M";
@@ -62,7 +63,7 @@ public class Servletform extends HttpServlet {
       
      
       
-     
+    
         response.setContentType("text/html;charset=UTF-8");
         
         try(PrintWriter out = response.getWriter()){
@@ -80,11 +81,30 @@ public class Servletform extends HttpServlet {
                 request.getSession().setAttribute("mensaje","Alcohol: "+ df.format(alcohol) + "<br> Alcoholemia: " + df.format(alcoholemia) + "<br> Estado de Ebriedad.");
                 estado = "Estado de Ebriedad.";
             }
+            reg.setIdRegistro(Long.MIN_VALUE);
+            reg.setMail(correo);
+            reg.setMililitros(mili2);
+            reg.setGraduacion(grados2);
+            reg.setPeso(peso2);
+            reg.setSexo(Character.MAX_VALUE);
+            reg.setAlcoholemia(alcoholemia);
+            reg.setEstado(estado);
+            reg.setFechaCreacion((Date) fechaCreacion);
+            
+            EntityManager em;
+            EntityManagerFactory emf;
+            
+            emf = Persistence.createEntityManagerFactory("proyectoPU");
+            em = emf.createEntityManager();     
+            em.getTransaction().begin();
+            em.persist(reg);
+            em.flush();
+            em.getTransaction().commit();
             
             
             
-            cn.Insertar(p);
-            request.getRequestDispatcher("/form.jsp").forward(request, response); 
+          
+            request.getRequestDispatcher("/wena.jsp").forward(request, response); 
             
       
         }

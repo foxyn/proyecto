@@ -12,7 +12,7 @@
         <h1 style="text-align: center;color: red"><u>Consulta</u></h1>
         <br>
         <br>
-        <form>
+         <form method="post" action="RegistroController">
         <table style="margin: 0 auto;">
             <tr>
                 <td>Correo:</td>
