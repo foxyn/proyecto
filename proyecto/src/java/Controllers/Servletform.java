@@ -115,10 +115,10 @@ public class Servletform extends HttpServlet {
             fecha_creacion = Date.from(Instant.MIN);
             
             res = con.Insertar(correo, mili2, grados2, peso2, sexo, alcoholemia, estado, fecha_creacion);
-            request.getRequestDispatcher("/wena.jsp")
+            request.getRequestDispatcher("/form.jsp")
                 .forward(request, response);
         } catch (Exception e) {
-             request.getRequestDispatcher("/wena.jsp")
+             request.getRequestDispatcher("/form.jsp")
                 .forward(request, response);
         }
             

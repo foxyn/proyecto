@@ -46,7 +46,7 @@ public class RegistroController extends HttpServlet {
             
             String mail = "";
             res = con.buscarPorCorreo(request.getParameter("correo"));
-            request.getRequestDispatcher("/wena.jsp")
+            request.getRequestDispatcher("/form.jsp")
                 .forward(request, response);
         } catch (Exception e) {
             System.out.println("nope");
