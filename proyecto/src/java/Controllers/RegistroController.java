@@ -11,6 +11,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Model.*;
+import java.util.*;
+import java.sql.*;
+
 
 
 public class RegistroController extends HttpServlet {
@@ -18,23 +22,7 @@ public class RegistroController extends HttpServlet {
   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //se reciben los datos
-        String mail = request.getParameter("mail");
-        Model.RegistroAlcoholemia reg = new Model.RegistroAlcoholemia();
-        
-        EntityManager em;
-            EntityManagerFactory emf;
-            
-            emf = Persistence.createEntityManagerFactory("proyectoPU");
-            em = emf.createEntityManager();     
-            em.getTransaction().begin();
-            em.persist(reg);
-            em.flush();
-            em.getTransaction().commit();
-            
-            response.sendRedirect("wena.jsp");
-     
-       
+    
     }
 
    
@@ -42,13 +30,27 @@ public class RegistroController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out  = response.getWriter();
+            try {
+            ResultSet res;
+            Consulta con = new Consulta();
+            
+            String mail = "";
+            res = con.buscarPorCorreo(request.getParameter("correo"));
+            request.getRequestDispatcher("/wena.jsp")
+                .forward(request, response);
+        } catch (Exception e) {
+            System.out.println("nope");
+        }
         
        
         

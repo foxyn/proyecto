@@ -2,12 +2,15 @@
 package Controllers;
 
 
+import Model.Consulta;
 import Model.RegistroAlcoholemia;
 import static Model.RegistroAlcoholemia_.fechaCreacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.sql.ResultSet;
 import java.text.DecimalFormat;
+import java.time.Instant;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,8 +45,9 @@ public class Servletform extends HttpServlet {
       String sexo= null;
       String mensaje=null;
       DecimalFormat df = new DecimalFormat("0.00");
+      Date fecha_creacion = null;
       
-      Model.RegistroAlcoholemia reg = new Model.RegistroAlcoholemia();
+      
       double factor=0;
       if (request.getParameter("sexo") == "1"){
            sexo = "M";
@@ -64,8 +68,29 @@ public class Servletform extends HttpServlet {
      
       
     
-        response.setContentType("text/html;charset=UTF-8");
         
+        /*RegistroAlcoholemia reg = new RegistroAlcoholemia();
+            reg.setIdRegistro(Long.MIN_VALUE);
+            reg.setMail(correo);
+            reg.setMililitros(mili2);
+            reg.setGraduacion(grados2);
+            reg.setPeso(peso2);
+            reg.setSexo(Character.MAX_VALUE);
+            reg.setAlcoholemia(alcoholemia);
+            reg.setEstado("ebrio");
+            reg.setFechaCreacion((Date) fechaCreacion);
+            
+            EntityManager em;
+            EntityManagerFactory emf;
+            
+            emf = Persistence.createEntityManagerFactory("proyectoPU");
+            em = emf.createEntityManager();     
+            em.getTransaction().begin();
+            em.persist(reg);
+            em.flush();
+            em.getTransaction().commit();*/
+            
+        response.setContentType("text/html;charset=UTF-8");
         try(PrintWriter out = response.getWriter()){
             String estado="";
              if (alcoholemia < 0.3){
@@ -81,30 +106,26 @@ public class Servletform extends HttpServlet {
                 request.getSession().setAttribute("mensaje","Alcohol: "+ df.format(alcohol) + "<br> Alcoholemia: " + df.format(alcoholemia) + "<br> Estado de Ebriedad.");
                 estado = "Estado de Ebriedad.";
             }
-            reg.setIdRegistro(Long.MIN_VALUE);
-            reg.setMail(correo);
-            reg.setMililitros(mili2);
-            reg.setGraduacion(grados2);
-            reg.setPeso(peso2);
-            reg.setSexo(Character.MAX_VALUE);
-            reg.setAlcoholemia(alcoholemia);
-            reg.setEstado(estado);
-            reg.setFechaCreacion((Date) fechaCreacion);
+             
+            try {
+                
+            ResultSet res;
             
-            EntityManager em;
-            EntityManagerFactory emf;
+            Consulta con = new Consulta();
+            fecha_creacion = Date.from(Instant.MIN);
             
-            emf = Persistence.createEntityManagerFactory("proyectoPU");
-            em = emf.createEntityManager();     
-            em.getTransaction().begin();
-            em.persist(reg);
-            em.flush();
-            em.getTransaction().commit();
+            res = con.Insertar(correo, mili2, grados2, peso2, sexo, alcoholemia, estado, fecha_creacion);
+            request.getRequestDispatcher("/wena.jsp")
+                .forward(request, response);
+        } catch (Exception e) {
+             request.getRequestDispatcher("/wena.jsp")
+                .forward(request, response);
+        }
             
             
             
-          
-            request.getRequestDispatcher("/wena.jsp").forward(request, response); 
+            
+            
             
       
         }
